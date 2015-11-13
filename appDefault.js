@@ -241,14 +241,14 @@ function scale() {
 function view() {
   //debugger;
   var pixels = $(window).height()/705;
-  console.log($(window).width());
+  //console.log($(window).width());
   var w = $(window).width()/pixels;
   if(w > $(window).width()) {
     $("head").append('<meta name="viewport" content="width = device-width, initial-scale=1">');
     return true;
   } else {
-    $("head").append('<meta name="viewport" content="width = device-width, initial-scale=1">');
-    //$("head").append('<meta name="viewport" content="width=' + w + ', initial-scale=1">');
+    //$("head").append('<meta name="viewport" content="width = device-width, initial-scale=1">');
+    $("head").append('<meta name="viewport" content="width=' + w + ', initial-scale=1">');
     return false;
   }
 }
