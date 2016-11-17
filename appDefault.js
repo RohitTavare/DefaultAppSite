@@ -1,3 +1,15 @@
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDl6nfVlV2KIKe1MrlVFzKvHDhzb5N4VKA",
+    authDomain: "analytics-92172.firebaseapp.com",
+    databaseURL: "https://analytics-92172.firebaseio.com",
+    storageBucket: "analytics-92172.appspot.com",
+    messagingSenderId: "576200678383"
+  };
+  firebase.initializeApp(config);
+  var db = firebase.database();
+
+
 var aspect = 1.7;
 var aspect2 = 1.5;
 var q = 0;
@@ -6,6 +18,18 @@ var authors = ["- a Student","- Wall Street Journal","- New York Times"];
 var qsinterval;
 
 $(document).ready(function() {
+
+
+// Next snippet is part of analytics code.
+  $(document).click(function(e) {
+    var posx = e.clientX + $(window).scrollLeft();
+    var posy = e.clientY + $(window).scrollTop();
+    console.log("(" + posx + ", " + posy + ")");
+    $('body').append("<div style='width: 10px; height: 10px; border-radius: 10px; position: absolute; top: "+ (posy - 5)  +"px; left: "+ (posx - 5) +"px; background-color: red;'></div>");
+    var url = window.location;
+    db.ref("/" + url + "/").post({x: posx, y: posy});
+  });
+
   view();
   $("#textblock").width($(".quoteblock").width());
   if($(window).width()/$(window).height() >= aspect) {
